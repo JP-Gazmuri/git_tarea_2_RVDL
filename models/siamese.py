@@ -88,12 +88,6 @@ class Siamese(tf.keras.Model):
         gradients = tape.gradient(loss, learnable_params)
         self.optimizer.apply_gradients(zip(gradients, learnable_params))
 
-        learnable_params = (
-            self.photo_encoder.trainable_variables
-        )
-        gradients = tape.gradient(loss, learnable_params)
-        self.optimizer.apply_gradients(zip(gradients, learnable_params))
-
         # tracking status.        
         self.loss_tracker.update_state(loss)
         self.dist_pos_tracker.update_state(dist_pos)
